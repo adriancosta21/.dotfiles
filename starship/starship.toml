@@ -7,7 +7,7 @@ right_format = """$all"""
 command_timeout = 1000
 
 [character]
-vicmd_symbol = "[N] >>>"
+vicmd_symbol = "->"
 success_symbol = '[➜](bold green)'
 
 [directory.substitutions]
@@ -15,24 +15,6 @@ success_symbol = '[➜](bold green)'
 
 [git_branch]
 format =  '[$symbol$branch(:$remote_branch)]($style)'
-
-[aws]
-format = '[$symbol(profile: "$profile" )(\(region: $region\) )]($style)'
-disabled = false
-style = 'bold blue'
-symbol = " "
-
-[golang]
-format = '[ ](bold cyan)'
-
-[kubernetes]
-symbol = '☸ '
-disabled = true
-detect_files = ['Dockerfile']
-format = '[$symbol$context( \($namespace\))]($style) '
-contexts = [
-  { context_pattern = "arn:aws:eks:us-west-2:577926974532:cluster/zd-pvc-omer", style = "green", context_alias = "omerxx", symbol = " " },
-]
 
 [docker_context]
 disabled = true
@@ -43,6 +25,14 @@ detect_extensions = []
 detect_files = []
 detect_folders = []
 symbol = " "  # Ícone do logo Python (Nerd Font)
+
+# Spotify
+[custom.spotify]
+command = "bash -c 's=$(playerctl -p spotify metadata --format \"{{artist}} - {{title}}\" 2>/dev/null); [[ -n \"$s\" ]] && { echo -n ${s:0:30}; [[ ${#s} -gt 30 ]] && echo -n \"...\"; } || echo'"
+when = 'playerctl -p spotify status 2>/dev/null | grep -q Playing'
+style = 'fg:green'
+symbol = ' '
+format = '[$symbol$output]($style) '
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"

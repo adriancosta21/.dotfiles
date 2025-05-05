@@ -1,13 +1,15 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# This file is supposed to be located inside the .dotfiles, so:
+# Don't forget to put source ~/.dotfiles/zsh/.zshrc on ~/.zshrc
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-if [[ -f "/opt/homebrew/bin/brew" ]]; then
+
+#if [[ -f "/opt/homebrew/bin/brew" ]]; then
   # If you're using macOS, you'll want this enabled
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
+  #eval "$(/opt/homebrew/bin/brew shellenv)"
+#fi
 
 # Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
@@ -18,11 +20,12 @@ if [ ! -d "$ZINIT_HOME" ]; then
    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
+# Loads starship
+export STARSHIP_CONFIG=~/.dotfiles/starship/starship.toml
+eval "$(starship init zsh)"
 # Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
-# Terminal prompt 
-eval "$(starship init zsh)"
 # Add in zsh plugins
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
@@ -30,6 +33,7 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 zinit light jeffreytse/zsh-vi-mode
 # VIM for zsh configure
+export XDG_CONFIG_HOME="$HOME/.dotfiles/config"
 ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
 # Add in snippets
 zinit snippet OMZL::git.zsh
@@ -96,4 +100,8 @@ zinit light-mode for \
 
 ### End of Zinit's installer chunk
 
-
+### Set .dotfiles as default for some packages
+export XDG_CONFIG_HOME=~/.dotfiles
+# Hyprland
+# Criar condição para caso não houver link simbólico ln -s ~/.dotfiles/hypr ~/.config/hypr
+export HYPRLAND_CONF=~/.dotfiles/hypr/hyprland.conf
