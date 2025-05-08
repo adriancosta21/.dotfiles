@@ -2,7 +2,9 @@
 require("config.lazy")
 require("config.options")
 require("config.highlights")
-
+vim.keymap.set("i", "jk", "<Esc>", { noremap = true })
+vim.keymap.set("v", "jk", "<Esc>", { noremap = true })
+vim.keymap.set("t", "jk", "<C-\\><C-n>", { noremap = true })
 -- Aplica transparência global após carregar o colorscheme
 vim.api.nvim_create_autocmd("ColorScheme", {
   pattern = "*",
