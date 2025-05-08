@@ -33,6 +33,7 @@ when = 'playerctl -p spotify status 2>/dev/null | grep -q Playing'
 style = 'fg:green'
 symbol = ' '
 format = '[$symbol$output]($style) '
+ignore_timeout = true
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
