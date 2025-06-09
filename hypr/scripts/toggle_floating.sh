@@ -11,7 +11,7 @@ fi
 # resize and float the active window based on its class
 if [[ $active_class == *"kitty"* ]]; then
   hyprctl dispatch togglefloating
-  hyprctl dispatch resizeactive exact 50% 100%
+  hyprctl dispatch resizeactive exact 1200 800
   hyprctl dispatch centerwindow
 else
   hyprctl dispatch togglefloating
