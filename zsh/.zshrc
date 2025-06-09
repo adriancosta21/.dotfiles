@@ -35,6 +35,7 @@ zinit light jeffreytse/zsh-vi-mode
 # VIM for zsh configure
 export XDG_CONFIG_HOME="$HOME/.dotfiles/config"
 ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
+
 # Add in snippets
 zinit snippet OMZL::git.zsh
 zinit snippet OMZP::git
@@ -82,9 +83,10 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Aliases
-alias ls='ls --color'
-alias vim='nvim'
+alias ls='eza --icons'
+alias nvim='XDG_CONFIG_HOME=$HOME/.dotfiles/ nvim'
 alias c='clear'
+alias vim="nvim"
 
 # Shell integrations
 eval "$(fzf --zsh)"
@@ -100,8 +102,7 @@ zinit light-mode for \
 
 ### End of Zinit's installer chunk
 
-### Set .dotfiles as default for some packages
-export XDG_CONFIG_HOME=~/.dotfiles
 # Hyprland
 # Criar condição para caso não houver link simbólico ln -s ~/.dotfiles/hypr ~/.config/hypr
 export HYPRLAND_CONF=~/.dotfiles/hypr/hyprland.conf
+
