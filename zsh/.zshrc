@@ -106,3 +106,11 @@ zinit light-mode for \
 # Criar condição para caso não houver link simbólico ln -s ~/.dotfiles/hypr ~/.config/hypr
 export HYPRLAND_CONF=~/.dotfiles/hypr/hyprland.conf
 
+# Configuration for android development
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+
