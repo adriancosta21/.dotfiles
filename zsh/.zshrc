@@ -1,16 +1,3 @@
-# This file is supposed to be located inside the .dotfiles, so:
-# Don't forget to put source ~/.dotfiles/zsh/.zshrc on ~/.zshrc
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-#if [[ -f "/opt/homebrew/bin/brew" ]]; then
-  # If you're using macOS, you'll want this enabled
-  #eval "$(/opt/homebrew/bin/brew shellenv)"
-#fi
-
 # Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
@@ -87,10 +74,17 @@ alias ls='eza --icons'
 alias nvim='XDG_CONFIG_HOME=$HOME/.dotfiles/ nvim'
 alias c='clear'
 alias vim="nvim"
+alias cat="bat"
+# Functions
+# replicates sudo !!
+fuck() {
+  eval sudo $(fc -ln -1)
+}
 
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
+
 
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
@@ -108,9 +102,13 @@ export HYPRLAND_CONF=~/.dotfiles/hypr/hyprland.conf
 
 # Configuration for android development
 export ANDROID_HOME=$HOME/Android/Sdk
+export QT_QPA_PLATFORM=xcb
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
+# Force some apps to use wayland
+export OZONE_PLATFORM=wayland
+export QT_QPA_PLATFORM=wayland
 
