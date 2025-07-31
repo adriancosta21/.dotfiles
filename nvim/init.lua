@@ -2,6 +2,8 @@
 require("config.lazy")
 require("config.options")
 require("config.highlights")
+-- disable swap files
+vim.opt.swapfile = false
 vim.keymap.set("i", "jk", "<Esc>", { noremap = true })
 vim.keymap.set("v", "jk", "<Esc>", { noremap = true })
 vim.keymap.set("t", "jk", "<C-\\><C-n>", { noremap = true })
