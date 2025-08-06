@@ -9,7 +9,7 @@ return {
           row = 1,
           pane = 1,
           section = "terminal",
-          cmd = "ascii-image-converter ~/Pictures/eva-cross.jpg -C -d 40,20",
+          cmd = "ascii-image-converter ~/Pictures/eva-cross.jpg -C",
           height = 20,
           padding = 1,
         },
