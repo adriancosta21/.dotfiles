@@ -4,7 +4,7 @@ return {
   opts = {
     dashboard = {
       sections = {
-        -- Coluna da esquerda: Imagem grande em ASCII
+        -- Imagem ASCII grande à esquerda
         {
           row = 1,
           pane = 1,
@@ -12,25 +12,13 @@ return {
           cmd = "ascii-image-converter ~/Pictures/eva-cross.jpg -C",
           height = 20,
           padding = 1,
+          scrollable = true,
         },
 
-        -- Coluna da direita: atalhos e listas
-        {
-          row = 1,
-          pane = 2,
-          section = "keys",
-          gap = 1,
-          padding = 1,
-        },
-        {
-          row = 1,
-          pane = 2,
-          icon = " ",
-          title = "Recent Files",
-          section = "recent_files",
-          indent = 2,
-          padding = 1,
-        },
+        -- Botões personalizados na direita
+
+        -- Outras seções na coluna da direita
+        { row = 1, pane = 2, icon = " ", title = "Keymaps", section = "keys", indent = 2, padding = 1 },
         {
           row = 1,
           pane = 2,
@@ -54,6 +42,14 @@ return {
           padding = 1,
           ttl = 5 * 60,
           indent = 3,
+        },
+
+        -- Tempo de carregamento do Neovim
+        {
+          row = 1,
+          pane = 2,
+          section = "startup",
+          padding = 1,
         },
       },
     },
