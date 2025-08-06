@@ -6,6 +6,7 @@ return {
         explorer = {
           layout = { layout = { position = "right" } },
           hidden = true,
+          no_ignore = false,
         },
       },
     },

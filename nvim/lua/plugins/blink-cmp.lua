@@ -25,7 +25,6 @@ return {
 
       -- Desabilita Enter
       ["<CR>"] = {},
-
       -- Outros exemplos de navegação/documentação (opcional)
       ["<C-b>"] = { "scroll_documentation_up", "fallback" },
       ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
