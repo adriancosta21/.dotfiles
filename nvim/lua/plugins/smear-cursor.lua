@@ -13,6 +13,6 @@ return {
     damping = 0.8, -- 0.65     [0, 1]
     damping_insert_mode = 0.8, -- 0.7      [0, 1]
     distance_stop_animating = 0.5,
-    time_interval = 7, -- milliseconds, increasing the framerate
+    time_interval = 7, -- milliseconds, in order to increase framerate
   },
 }
