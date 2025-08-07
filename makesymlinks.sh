@@ -3,7 +3,7 @@
 ln -s ~/.dotfiles/zsh/.zshrc ~/
 
 # Other files will be transfered to ~/.config
-folders=(nvim fastfetch kitty)
+folders=(nvim fastfetch kitty hypr)
 for item in "${folders[@]}"; do
   echo "Linking ~/.dotfiles/$item to ~/.config/$item"
   ln -s ~/.dotfiles/"$item" ~/.config/
