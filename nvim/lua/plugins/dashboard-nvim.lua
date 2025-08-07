@@ -12,15 +12,15 @@ return {
           cmd = "ascii-image-converter ~/Pictures/eva-cross.jpg -C",
           height = 20,
           padding = 1,
-          scrollable = true,
+          scrollable = false,
         },
 
         -- Botões personalizados na direita
 
         -- Outras seções na coluna da direita
-        { row = 1, pane = 2, icon = " ", title = "Keymaps", section = "keys", indent = 2, padding = 1 },
+        { row = 2, pane = 2, icon = " ", title = "Keymaps", section = "keys", indent = 2, padding = 1 },
         {
-          row = 1,
+          row = 2,
           pane = 2,
           icon = " ",
           title = "Projects",
@@ -29,7 +29,7 @@ return {
           padding = 1,
         },
         {
-          row = 1,
+          row = 2,
           pane = 2,
           icon = " ",
           title = "Git Status",
@@ -47,7 +47,7 @@ return {
         -- Tempo de carregamento do Neovim
         {
           row = 1,
-          pane = 2,
+          pane = 1,
           section = "startup",
           padding = 1,
         },
