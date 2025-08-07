@@ -2,14 +2,13 @@
 This system is designed to be used as a whole, cohesively.
 ## Tips
   * Vim motions
-    The vim motions can be used in the any terminal using the zsh, by pressing ESC or the jk binding. 
-    > The jk binding must be pressed quickly.
+    * The vim motions can be used in the any terminal using the zsh, by pressing ESC or the jk binding. 
+      > The jk binding must be pressed quickly. It's consistent across the zsh and nvim
 ## Required Packages
 > These packages are required to use this configuration on the terminal
   * Zsh
   * Starship
   * Eza
-  * Nvim
 # Installation
 1. Clone the repository
    ```bash
