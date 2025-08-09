@@ -7,7 +7,7 @@ return {
       "<leader><leader>",
       function()
         telescope_builtin.find_files({
-          hidden = true,
+          hidden = false,
           no_ignore = false,
           layout_config = {
             prompt_position = "top", -- Coloca o prompt no topo
@@ -22,7 +22,7 @@ return {
       "<leader>ff",
       function()
         telescope_builtin.find_files({
-          hidden = false,
+          hidden = true,
           no_ignore = false,
           layout_config = {
             prompt_position = "top", -- Coloca o prompt no topo
