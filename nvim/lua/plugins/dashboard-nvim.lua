@@ -4,33 +4,32 @@ return {
   opts = {
     dashboard = {
       sections = {
-        -- Imagem ASCII grande à esquerda
+        -- Keymaps
         {
           row = 1,
           pane = 1,
-          section = "terminal",
-          cmd = "ascii-image-converter ~/Pictures/eva-cross.jpg -C",
-          height = 20,
+          icon = " ",
+          title = "Keymaps",
+          section = "keys",
+          indent = 2,
           padding = 1,
-          scrollable = false,
         },
 
-        -- Botões personalizados na direita
-
-        -- Outras seções na coluna da direita
-        { row = 2, pane = 2, icon = " ", title = "Keymaps", section = "keys", indent = 2, padding = 1 },
+        -- Projetos
         {
           row = 2,
-          pane = 2,
+          pane = 1,
           icon = " ",
           title = "Projects",
           section = "projects",
           indent = 2,
           padding = 1,
         },
+
+        -- Status do Git
         {
-          row = 2,
-          pane = 2,
+          row = 3,
+          pane = 1,
           icon = " ",
           title = "Git Status",
           section = "terminal",
@@ -44,9 +43,9 @@ return {
           indent = 3,
         },
 
-        -- Tempo de carregamento do Neovim
+        -- Tempo de carregamento do Neovim (agora por último)
         {
-          row = 1,
+          row = 4,
           pane = 1,
           section = "startup",
           padding = 1,
