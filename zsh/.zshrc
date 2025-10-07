@@ -75,6 +75,11 @@ alias nvim='XDG_CONFIG_HOME=$HOME/.dotfiles/ nvim'
 alias c='clear'
 alias vim="nvim"
 alias cat="bat"
+## Aliases: Tmux
+alias ta='tmux attach'
+alias tl='tmux list-sessions'
+alias tn='tmux new-session -s'
+
 # Functions
 # replicates sudo !!
 fuck() {
