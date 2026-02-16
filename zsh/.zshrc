@@ -20,7 +20,7 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 zinit light jeffreytse/zsh-vi-mode
 # VIM for zsh configure
-export XDG_CONFIG_HOME="$HOME/.dotfiles/config"
+export XDG_CONFIG_HOME="$HOME/.config"
 ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
 
 # Add in snippets
