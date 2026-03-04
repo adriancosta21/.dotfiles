@@ -9,6 +9,7 @@ This system is designed to be used as a whole, cohesively.
   * Zsh
   * Starship
   * Eza
+  * dms-shell-bin (AUR)
 ### For Hyprland
   * Multimedia
     * brightnessctl
