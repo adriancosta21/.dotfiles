@@ -1,0 +1,31 @@
+# Output and logs
+nohup.out
+errors.txt
+*.log
+
+# Temp and backup files
+*~
+.#*
+*.swp
+*.bak
+*.backup*
+
+# Build files
+# quickshell/matugen
+quickshell/matugen/dms-theme.vsix
+quickshell/matugen/vsix-build/
+
+# Plugin dependencies
+# DankMaterialShell
+DankMaterialShell/plugins/.repos/
+
+# Configurações de usuário (verifique se são realmente específicas do usuário)
+DankMaterialShell/settings.json
+DankMaterialShell/plugin_settings.json
+# nvim
+# nvim/lazy-lock.json # Descomente se não quiser versionar os locks de plugins
+# nvim/.neoconf.json # Descomente se contiver apenas configurações locais
+
+# Arquivos de sistema operacional
+.DS_Store
+Thumbs.db
