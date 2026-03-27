@@ -117,3 +117,4 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 export OZONE_PLATFORM=wayland
 export QT_QPA_PLATFORM=wayland
 
+export XDG_DATA_DIRS=/var/lib/snapd/desktop:$XDG_DATA_DIRS
