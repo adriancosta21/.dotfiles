@@ -8,7 +8,7 @@ if [ ! -d "$ZINIT_HOME" ]; then
 fi
 
 # Loads starship
-export STARSHIP_CONFIG=~/.dotfiles/starship/starship.toml
+export STARSHIP_CONFIG=~/.config/starship/starship.toml
 eval "$(starship init zsh)"
 # Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
@@ -71,7 +71,7 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Aliases
 alias ls='eza --icons'
-alias nvim='XDG_CONFIG_HOME=$HOME/.dotfiles/ nvim'
+alias nvim='XDG_CONFIG_HOME=$HOME/.config/ nvim'
 alias c='clear'
 alias vim="nvim"
 alias cat="bat"
@@ -102,8 +102,8 @@ zinit light-mode for \
 ### End of Zinit's installer chunk
 
 # Hyprland
-# Criar condição para caso não houver link simbólico ln -s ~/.dotfiles/hypr ~/.config/hypr
-export HYPRLAND_CONF=~/.dotfiles/hypr/hyprland.conf
+# Criar condição para caso não houver link simbólico ln -s ~/.config/hypr ~/.config/hypr
+export HYPRLAND_CONF=~/.config/hypr/hyprland.conf
 
 # Configuration for android development
 export ANDROID_HOME=$HOME/Android/Sdk
