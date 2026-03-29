@@ -70,13 +70,13 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Aliases
-alias ls='eza --icons'
+alias ls='eza --icons=always'
 alias nvim='XDG_CONFIG_HOME=$HOME/.config/ nvim'
 alias c='clear'
 alias vim="nvim"
 alias cat="bat"
 ## Aliases: Tmux
-alias ta='tmux attach'
+alias ta='tmux attach || tmux'
 alias tl='tmux list-sessions'
 alias tn='tmux new-session -s'
 
@@ -101,9 +101,6 @@ zinit light-mode for \
 
 ### End of Zinit's installer chunk
 
-# Hyprland
-# Criar condição para caso não houver link simbólico ln -s ~/.config/hypr ~/.config/hypr
-export HYPRLAND_CONF=~/.config/hypr/hyprland.conf
 
 # Configuration for android development
 export ANDROID_HOME=$HOME/Android/Sdk
