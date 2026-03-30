@@ -7,32 +7,32 @@ pacman_packages=(
   ttf-jetbrains-mono-nerd
   zoxide
   starship
+  eza
+  github-cli
   yay
   fastfetch
   cava
-  thunar
+  hyprland
+  hyprpolkitagent
   playerctl
   grim
   slurp
   wl-clipboard
-  hyprland
-  hyprpolkitagent
   system-config-printer
   cups
   cups-filters
   cups-pk-helper
   ghostscript
   gsfonts
-  github-cli
+  thunar
   obsidian
-  stow
-  eza
   zen-browser-bin
 )
 
 # AUR packages
 aur_packages=(
   dms-shell-bin
+  dsearch-bin
   lsfg-vk-git
   spotify
 )
