@@ -1,46 +1,68 @@
 # Intro
 This system is designed to be used as a whole, cohesively.
+> **__NOTE__** Not all the current folders are being used (e.g: waybar, posh). They're only here as an alternative/backup
+
+## Current config
+  * Compositor: Hyprland
+  * Bar/Notifications/App launcher: DMS (Dank Material Shell)
+  * Shell: ZSH
+  * Shell prompt: Starship
+  * Terminal Emulator: Kitty
+  * Terminal Multiplexer: Tmux
+  * Code editor: Neovim
+
 ## Tips
   * Vim motions
-    * The vim motions can be used in the any terminal using the zsh, by pressing ESC or the jk binding. 
+    * The vim motions can be used in any terminal using the zsh, by pressing ESC or the jk binding. 
     > The jk binding must be pressed quickly. It's consistent across the zsh and nvim
-## Required Packages
-### For the terminal
-  * Zsh
-  * Starship
-  * Eza
-  * dms-shell-bin (AUR)
-### For Hyprland
-  * Multimedia
-    * brightnessctl
-    * playerctl
-  * Quality of life
-    * Hyprpaper
-    * dunst 
-    * xdg-desktop-portal-hyprland
-    * wl-clipboard
-    * slurp
-    * grim
-    * swayidle
-    * Hyprlock
-# Installation
-1. Clone the repository
-   ```bash
-   git clone https://adriancosta21/.dotfiles.git ~/.dotfiles
-   ```
-2. Create symlinks to the ~/.config directory
-   Links created:
-    > * Zsh
-    > * Kitty
-    > * Nvim (LazyVim)
-    > * Waybar
-    > * FastFetch
-    > * Hypr (Hyprland/ delete it, if not supported)
 
+# Installed Packages
+## For the terminal
+  * zsh
+  * zoxide
+  * starship
+  * eza  
+  * kitty
+  * ttf-jetbrains-mono-nerd
+  * github-cli
+  * fastfetch
+  * yay
+## For Hyprland
+  * hyprland
+  * hyprpolkitagent 
+  * wl-clipboard
+  * slurp
+  * grim
+## For DMS
+  * dms-shell-bin
+  * dsearch-bin
+  * cava
+## Printing support
+  * system-config-printer
+  * cups
+  * cups-filters
+  * cups-pk-helper
+  * ghostscript
+  * gsfonts
+## Apps
+  * Thunar
+  * Spotify
+  * Obsidian
+  * Zen Browser
+# Installation
+1. Clone the repository and create symlinks (requires GNU stow)
    ```bash
-   ~/.dotfiles/makesymlinks.sh
+    git clone https://github.com/adriancosta21/.dotfiles.git ~/.dotfiles
+    cd ~/.dotfiles
+    stow */
    ```
-3. Change terminal to zsh
+2. Install packages (Pacman + AUR)
+   ```bash
+    chmod +x ./packages.sh
+    ./packages.sh
+   ```
+3. Change terminal shell to Zsh
    ```bash
    exec zsh
    chsh -s $(which zsh)
+   ```
