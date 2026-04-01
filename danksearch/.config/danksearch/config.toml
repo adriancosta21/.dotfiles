@@ -1,0 +1,48 @@
+# DankSearch Configuration
+# See https://github.com/AvengeMedia/danksearch for documentation
+
+index_path = "/home/adrian/.cache/danksearch/index"
+listen_addr = ":43654"
+max_file_bytes = 16777216 # 16MB
+worker_count = 6
+reindex_interval_hours = 24
+text_extensions = [
+  ".txt",
+  ".md",
+  ".go",
+  ".pdf",
+  ".py",
+  ".js",
+  ".ts",
+  ".jsx",
+  ".tsx",
+  ".json",
+  ".yaml",
+  ".yml",
+  ".toml",
+  ".html",
+  ".css",
+  ".rs",
+  ".c",
+  ".cpp",
+  ".h",
+  ".java",
+  ".rb",
+  ".php",
+  ".sh",
+]
+index_all_files = true
+index_xattr_tags = true
+
+[[index_paths]]
+path = "/home/adrian/Downloads"
+watch = true                    # Automatically detects updates
+max_depth = 6
+exclude_hidden = true
+
+[[index_paths]]
+path = "/home/adrian/Documents"
+watch = true
+max_depth = 6
+exclude_hidden = true
+exclude_dirs = ["node_modules", "venv", "target"]
