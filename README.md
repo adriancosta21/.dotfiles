@@ -1,6 +1,5 @@
 # Intro
 This system is designed to be used as a whole, cohesively.
-> **__NOTE__** Not all the current folders are being used (e.g: waybar, posh). They're only here as an alternative/backup
 
 ## Current config
   * Compositor: Hyprland
