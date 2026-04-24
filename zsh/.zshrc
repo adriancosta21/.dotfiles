@@ -79,6 +79,21 @@ alias cat="bat"
 alias ta='tmux attach || tmux'
 alias tl='tmux list-sessions'
 alias tn='tmux new-session -s'
+## Utilities
+compresspdf() {
+  if [ $# -lt 2 ]; then
+    echo "Usage: compresspdf input.pdf output.pdf [screen|ebook|printer]"
+    return 1
+  fi
+
+  QUALITY=${3:-ebook}
+
+  gs -sDEVICE=pdfwrite \
+     -dCompatibilityLevel=1.4 \
+     -dPDFSETTINGS=/$QUALITY \
+     -dNOPAUSE -dQUIET -dBATCH \
+     -sOutputFile="$2" "$1"
+}
 
 # Functions
 # replicates sudo !!
