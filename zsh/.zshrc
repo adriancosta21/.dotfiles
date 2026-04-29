@@ -119,7 +119,6 @@ zinit light-mode for \
 
 # Configuration for android development
 export ANDROID_HOME=$HOME/Android/Sdk
-export QT_QPA_PLATFORM=xcb
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
@@ -127,6 +126,7 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # Force some apps to use wayland
 export OZONE_PLATFORM=wayland
-export QT_QPA_PLATFORM=wayland
+export QT_QPA_PLATFORM="wayland;xcb" #xcb set as fallback
 
 export XDG_DATA_DIRS=/var/lib/snapd/desktop:$XDG_DATA_DIRS
+export PATH=$HOME/.local/bin:$PATH
