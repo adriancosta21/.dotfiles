@@ -13,6 +13,7 @@ zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 zinit light jeffreytse/zsh-vi-mode
+zinit snippet OMZP::dirhistory
 # Completions
 autoload -Uz compinit && compinit
 zinit cdreplay -q
@@ -102,6 +103,7 @@ zvm_after_init(){
   bindkey -M viins '^p' history-substring-search-up
   bindkey -M viins '^n' history-substring-search-down
   bindkey -M viins '^B' copybuffer
+  bindkey -M viins '^ ' fzf-tab-complete  # Ctrl+Space
 }
 
 # ALIASES
@@ -122,6 +124,21 @@ alias ga="git add"
 alias gc="git commit"
 alias gl="git log --oneline --graph --decorate"
 
+# GLOBAL ALIASES
+alias -g C='| wl-copy'
+alias -g L='| less'
+alias -g NE='2>/dev/null'
+
+# SUFIX ALIASES
+alias -s md="bat"
+alias -s mov="xdg-open"
+alias -s mp4="xdg-open"
+alias -s mp3="xdg-open"
+alias -s flac="xdg-open"
+alias -s mp4="xdg-open"
+alias -s png="xdg-open"
+alias -s jpg="xdg-open"
+alias -s pdf="xdg-open"
 
 # SHELL INTEGRATIONS
 eval "$(fzf --zsh)"
