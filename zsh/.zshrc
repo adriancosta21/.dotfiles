@@ -16,13 +16,9 @@ zinit light jeffreytse/zsh-vi-mode
 # Completions
 autoload -Uz compinit && compinit
 zinit cdreplay -q
-
-# KEYBINDINGS
-bindkey -e
-bindkey '^p' history-search-backward
-bindkey '^n' history-search-forward
-bindkey '^[w' kill-region
-bindkey '^H' backward-kill-word
+# History substring search
+zinit snippet OMZ::plugins/git/git.plugin.zsh
+zinit light zsh-users/zsh-history-substring-search
 
 # SHELL CONFIGURATION
 # History
@@ -47,20 +43,8 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 # Zsh VI mode
 ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
 
-# ALIASES
-alias ls='eza --icons=always'
-alias la='eza --icons=always -a'
-alias c='clear'
-alias vim="nvim"
-alias cat="bat"
-alias please="fuck"
-# Tmux
-alias ta='tmux attach || tmux'
-alias tl='tmux list-sessions'
-alias tn='tmux new-session -s'
-
 # FUNCTIONS
-## Compress PDF
+# Compress PDF
 compresspdf() {
   if [ $# -lt 2 ]; then
     echo "usage: compresspdf input.pdf output.pdf [screen|ebook|printer]"
@@ -75,10 +59,69 @@ compresspdf() {
      -dnopause -dquiet -dbatch \
      -soutputfile="$2" "$1"
 }
+# Copy file content
+  copyfile() {
+  if [ -z "$1" ]; then
+    echo "usage: copyfile <file>"
+    return 1
+  fi
+
+  if [ ! -f "$1" ]; then
+    echo "error: file not found"
+    return 1
+  fi
+
+  wl-copy < "$1"
+}
+# Copy buffer to clipboard using ctrl+B keybind
+copybuffer(){
+  print -rn -- "$BUFFER" | wl-copy
+  zle reset-prompt
+  zle kill-whole-line
+}
+zle -N copybuffer # Allow function to be used as keybind
+# Paste clipboard using ctrl+V keybind
+paste_clipboard() {
+  BUFFER+=$(wl-paste)
+  CURSOR=$#BUFFER
+}
+zle -N paste_clipboard
 # Replicates sudo !!
 fuck() {
   eval "sudo $(fc -ln -1)"
 }
+
+# KEYBINDINGS
+bindkey -M viins '^Z' undo
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+bindkey -M viins '^V' paste_clipboard
+bindkey -M viins '^H' backward-kill-word
+# Specific function to overwrite zvm binds, loading after zvm 
+zvm_after_init(){
+  bindkey -M viins '^p' history-substring-search-up
+  bindkey -M viins '^n' history-substring-search-down
+  bindkey -M viins '^B' copybuffer
+}
+
+# ALIASES
+alias ls='eza --icons=always'
+alias la='eza --icons=always -a'
+alias c='clear'
+alias vim="nvim"
+alias cat="bat"
+alias please="fuck"
+# Tmux
+alias ta='tmux attach || tmux'
+alias tl='tmux list-sessions'
+alias tn='tmux new-session -s'
+# Git
+alias gst="git status"
+alias gs="git status -sb"
+alias ga="git add"
+alias gc="git commit"
+alias gl="git log --oneline --graph --decorate"
+
 
 # SHELL INTEGRATIONS
 eval "$(fzf --zsh)"
