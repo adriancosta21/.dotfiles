@@ -87,6 +87,14 @@ paste_clipboard() {
   CURSOR=$#BUFFER
 }
 zle -N paste_clipboard
+
+# Execute clear command
+clear_command() {
+  clear
+  zle reset-prompt
+}
+zle -N clear_command
+
 # Replicates sudo !!
 fuck() {
   eval "sudo $(fc -ln -1)"
@@ -104,6 +112,8 @@ zvm_after_init(){
   bindkey -M viins '^n' history-substring-search-down
   bindkey -M viins '^B' copybuffer
   bindkey -M viins '^ ' fzf-tab-complete  # Ctrl+Space
+  bindkey -M viins '^/' clear_command     # Tenta Ctrl+/ literal
+  bindkey -M viins '^_' clear_command     # Some emuators send "/" as "_"
 }
 
 # ALIASES
