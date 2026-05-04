@@ -261,8 +261,8 @@ layout {
     // Top and bottom struts will simply add outer gaps in addition to the area occupied by
     // layer-shell panels and regular gaps.
     struts {
-        left 16
-        right 16
+        left 8
+        right 8
     }
 }
 
@@ -276,6 +276,7 @@ layout {
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
 
 spawn-at-startup "xwayland-satellite" // make sure to install package
+spawn-at-startup "bash" "-c" "~/.config/niri/scripts/auto-fill.sh"
 
 hotkey-overlay {
     // Uncomment this line to disable the "Important Hotkeys" pop-up at startup.
@@ -334,12 +335,7 @@ animations {
 
 // Open the Firefox picture-in-picture player as floating by default.
 window-rule {
-    // This app-id regular expression will work for both:
-    // - host Firefox (app-id is "firefox")
-    // - Flatpak Firefox (app-id is "org.mozilla.firefox")
-    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
-    open-floating true
-    opacity 0.8
+   opacity 0.9
     background-effect {
       blur true
       noise 0
@@ -349,7 +345,7 @@ window-rule {
 window-rule {
   // Rules for inactive windows
   match is-active=false
-  opacity 0.9
+  opacity 0.8
 }
 
 
