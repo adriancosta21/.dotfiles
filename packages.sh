@@ -10,10 +10,10 @@ pacman_packages=(
   eza
   github-cli
   yay
+  niri
+  dms-shell
   fastfetch
   cava
-  hyprland
-  hyprpolkitagent
   playerctl
   grim
   slurp
@@ -31,7 +31,6 @@ pacman_packages=(
 
 # AUR packages
 aur_packages=(
-  dms-shell-bin
   dsearch-bin
   lsfg-vk-git
   spotify
