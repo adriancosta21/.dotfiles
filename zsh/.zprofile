@@ -13,6 +13,9 @@ export QT_QPA_PLATFORM="wayland;xcb"
 export ANDROID_HOME="$HOME/Android/Sdk"
 export PATH="$HOME/.local/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$PATH"
 
+# npm global packages (install without sudo)
+export NPM_CONFIG_PREFIX="$HOME/.local/share/npm-global"
+export PATH="$HOME/.local/share/npm-global/bin:$PATH"
+
 # Others
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
-
