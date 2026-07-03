@@ -22,15 +22,16 @@ return {
       function()
         require("telescope.builtin").find_files({
           hidden = true,
-          no_ignore = false,
+          no_ignore = true,
+          find_command = { "fd", "--type", "f", "--hidden", "--no-ignore", "--no-ignore-vcs", "--follow" },
           layout_config = {
-            prompt_position = "top", -- Coloca o prompt no topo
+            prompt_position = "top",
           },
           layout_strategy = "horizontal",
           sorting_strategy = "ascending",
         })
       end,
-      desc = "Find files (root dir, show hidden, prompt top)",
+      desc = "Find files (all files including hidden)",
     },
   },
   config = function()
