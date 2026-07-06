@@ -100,6 +100,9 @@ fuck() {
   eval "sudo $(fc -ln -1)"
 }
 
+help() {
+  bash -c 'help "$@"' _ "$@"
+}
 # KEYBINDINGS
 bindkey -M viins '^Z' undo
 bindkey -M vicmd 'k' history-substring-search-up
@@ -154,3 +157,4 @@ alias -s pdf="xdg-open"
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(starship init zsh)"
+
