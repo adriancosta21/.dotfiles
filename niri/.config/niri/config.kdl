@@ -83,7 +83,6 @@ layout {
     }
   }
 
-spawn-at-startup "dms" "run"
 spawn-at-startup "xwayland-satellite" // make sure to install package
 spawn-at-startup "bash" "-c" "~/.config/niri/scripts/auto-fill.sh"
 
