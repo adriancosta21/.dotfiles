@@ -2,7 +2,7 @@
 # See https://github.com/AvengeMedia/danksearch for documentation
 
 index_path = "/home/adrian/.cache/danksearch/index"
-listen_addr = ":43654"
+listen_addr = "127.0.0.1:43654"
 max_file_bytes = 16777216 # 16MB
 worker_count = 6
 reindex_interval_hours = 24
@@ -35,13 +35,13 @@ index_all_files = true
 index_xattr_tags = true
 
 [[index_paths]]
-path = "/home/adrian/Downloads"
-watch = true                    # Automatically detects updates
+path = "~/Downloads"
+watch = true          # Automatically detects updates
 max_depth = 6
 exclude_hidden = true
 
 [[index_paths]]
-path = "/home/adrian/Documents"
+path = "~/Documents"
 watch = true
 max_depth = 6
 exclude_hidden = true
