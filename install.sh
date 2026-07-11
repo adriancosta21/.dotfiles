@@ -90,6 +90,40 @@ exec 2>>"$LOGFILE"
 
 # === FUNCTIONS ===
 
+warning_prompt() {
+  cat <<'EOF'
+===========================================
+            WARNING
+===========================================
+
+This installer is highly opinionated and
+tailored to a specific Arch Linux setup.
+
+It will:
+  • Install and remove packages
+  • Enable and start systemd services
+  • Create symlinks in your HOME directory
+  • Overwrite existing dotfiles when using stow -R
+
+Do NOT run this script unless you understand
+what it does and have reviewed its contents.
+
+Continue? [y/N]
+EOF
+
+  read -r answer
+
+  case "$answer" in
+  [Yy])
+    echo "Starting installation..."
+    ;;
+  *)
+    echo "Installation aborted."
+    exit 0
+    ;;
+  esac
+}
+
 check_arch() {
   if ! command -v pacman &>/dev/null; then
     echo "This install script must be used inside arch-based systems"
@@ -163,6 +197,7 @@ systemd_setup() {
 
 # === CODE EXECUTION ===
 
+warning_prompt
 check_arch
 check_internet
 pacman_packages
