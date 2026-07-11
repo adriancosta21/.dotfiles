@@ -116,7 +116,6 @@ animations {
 // https://yalter.github.io/niri/Configuration:-Window-Rules
 // General window rule
 window-rule {
-   opacity 0.9
     background-effect {
       blur true
       noise 0
