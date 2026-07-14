@@ -97,7 +97,7 @@ exec 2>>"$LOGFILE"
 warning_prompt() {
   cat <<'EOF'
 ===========================================
-            WARNING
+                  WARNING
 ===========================================
 
 This installer is highly opinionated and
@@ -199,6 +199,11 @@ systemd_setup() {
   fi
 }
 
+update_font_cache() {
+  echo "Updating font cache..."
+  fc-cache &>/dev/null
+}
+
 # === CODE EXECUTION ===
 
 warning_prompt
@@ -206,6 +211,7 @@ check_arch
 check_internet
 pacman_packages
 aur_packages
+update_font_cache
 stow_dotfiles
 systemd_setup
 echo "Instalation complete! Check ~/dotfiles.log for warnings or errors"
