@@ -147,7 +147,7 @@ binds {
    Mod+Shift+Slash { show-hotkey-overlay; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
-    Mod+E {spawn "thunar"; }
+    Mod+E {spawn "dolphin"; }
     Mod+I {spawn "zen-browser";}
     Mod+Return {spawn "kitty"; } 
 
@@ -309,7 +309,7 @@ binds {
     Mod+Shift+Equal { set-window-height "+10%"; }
 
     // Move the focused window between the floating and the tiling layout.
-    Mod+V       { toggle-window-floating;}
+    Mod+V       {spawn "~/.config/niri/scripts/toggle_floating.sh";}
     Mod+Shift+V { switch-focus-between-floating-and-tiling; }
 
 
