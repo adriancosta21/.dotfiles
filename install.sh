@@ -10,10 +10,14 @@ PACMAN_PKG=(
   zsh
   kitty
   neovim
-  ttf-jetbrains-mono-nerd
   zoxide
   starship
   eza
+  # Fonts
+  ttf-jetbrains-mono-nerd # kitty font / default system font
+  noto-fonts              # special characters
+  noto-fonts-emoji        # emojis
+  noto-fonts-cjk          # chinese, japanese, korean characters
   # System
   niri
   xwayland-satellite
