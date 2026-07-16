@@ -16,16 +16,9 @@ quickshell/matugen/dms-theme.vsix
 quickshell/matugen/vsix-build/
 
 # Plugin dependencies
+
 # DankMaterialShell
-DankMaterialShell/plugins/.repos/
-
-# Configurações de usuário (verifique se são realmente específicas do usuário)
-DankMaterialShell/settings.json
-DankMaterialShell/plugin_settings.json
-# nvim
-# nvim/lazy-lock.json # Descomente se não quiser versionar os locks de plugins
-# nvim/.neoconf.json # Descomente se contiver apenas configurações locais
-
-# Arquivos de sistema operacional
-.DS_Store
-Thumbs.db
+**/DankMaterialShell/plugins/.repos/
+**/DankMaterialShell/plugins/*.meta
+**/DankMaterialShell/.firstlaunch
+**/DankMaterialShell/.changelog-*
