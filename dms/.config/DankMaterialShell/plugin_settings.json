@@ -1,0 +1,12 @@
+{
+  "gitmojiLauncher": {
+    "enabled": true
+  },
+  "calculator": {
+    "enabled": true,
+    "trigger": "="
+  },
+  "dankBatteryAlerts": {
+    "enabled": true
+  }
+}
