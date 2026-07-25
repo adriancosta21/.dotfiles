@@ -1,30 +1,61 @@
 return {
-  "epwalsh/obsidian.nvim",
-  version = "*", -- recommended, use latest release instead of latest commit
-  lazy = true,
-  ft = "markdown",
-  dependencies = {
-    -- Required.
-    "nvim-lua/plenary.nvim",
-
-    -- see below for full list of optional dependencies 👇
+  {
+    "epwalsh/obsidian.nvim",
+    version = "*",
+    lazy = true,
+    ft = "markdown",
+    keys = {
+      { "<leader>oj", "<cmd>ObsidianToday<cr>", desc = "Today's note" },
+      { "<leader>oy", "<cmd>ObsidianYesterday<cr>", desc = "Yesterday's note" },
+      { "<leader>ot", "<cmd>ObsidianTomorrow<cr>", desc = "Tomorrow's note" },
+    },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    opts = function()
+      local candidates = {
+        "~/Vaults/",
+        "~/vaults",
+        "~/Documents/vaults",
+        "~/Documents/Vaults/",
+      }
+      local vaults_path
+      for _, candidate in ipairs(candidates) do
+        local expanded = vim.fn.expand(candidate)
+        if vim.fn.isdirectory(expanded) == 1 then
+          vaults_path = expanded
+          break
+        end
+      end
+      local workspaces = {}
+      if vaults_path then
+        for _, folder in ipairs(vim.fn.glob(vaults_path .. "*/", false, true)) do
+          table.insert(workspaces, {
+            name = vim.fn.fnamemodify(folder, ":t"),
+            path = folder,
+          })
+        end
+      end
+      if #workspaces == 0 then
+        vim.notify("obsidian.nvim: no vault folders found in " .. table.concat(candidates, ", "), vim.log.levels.WARN)
+        workspaces = { { name = "vaults", path = vim.fn.expand(candidates[1]) } }
+      end
+      return {
+        workspaces = workspaces,
+        daily_notes = {
+          folder = "dailynotes",
+        },
+      }
+    end,
   },
-  opts = function()
-    local workspaces = {}
-    local vaults_path = vim.fn.expand("~/vaults/")
-    local folders = vim.fn.glob(vaults_path .. "*/", false, true)
 
-    for _, folder in ipairs(folders) do
-      local name = vim.fn.fnamemodify(folder, ":h:t")
-      table.insert(workspaces, {
-        name = name,
-        path = folder,
+  {
+    "folke/which-key.nvim",
+    opts = function(_, opts)
+      opts.spec = opts.spec or {}
+      vim.list_extend(opts.spec, {
+        { "<leader>o", group = "Obsidian", icon = { cat = "filetype", name = "markdown" } },
       })
-    end
-
-    return {
-      workspaces = workspaces,
-      -- see below for full list of options 👇
-    }
-  end,
+    end,
+  },
 }
