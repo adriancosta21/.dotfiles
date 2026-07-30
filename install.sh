@@ -25,6 +25,7 @@ PACMAN_PKG=(
   cava
   playerctl
   xdg-desktop-portal
+  xdg-desktop-portal-kde # find default apps on dolphin
   wl-clipboard
   # Audio
   pipewire
@@ -198,6 +199,20 @@ systemd_setup() {
     exit 1
   fi
 }
+configure_kde_integration() {
+  # Fix KDE application menu integration outside Plasma (Niri/Wayland)
+  echo "Configuring KDE/XDG application menu..."
+  sudo mkdir -p /etc/xdg/menus
+  if [ -f /etc/xdg/menus/plasma-applications.menu ] && [ ! -e /etc/xdg/menus/applications.menu ]; then
+    sudo ln -s /etc/xdg/menus/plasma-applications.menu /etc/xdg/menus/applications.menu
+  fi
+
+  # Update MIME database
+  sudo update-mime-database /usr/share/mime
+  # Rebuild KDE service cache
+  rm -f ~/.cache/ksycoca6_*
+  kbuildsycoca6 --noincremental --track menu
+}
 
 update_font_cache() {
   echo "Updating font cache..."
@@ -211,6 +226,7 @@ check_arch
 check_internet
 pacman_packages
 aur_packages
+configure_kde_integration
 update_font_cache
 stow_dotfiles
 systemd_setup
