@@ -1,13 +1,13 @@
 return {
   {
-    "epwalsh/obsidian.nvim",
+    "obsidian-nvim/obsidian.nvim", -- switching from the main epwalsh/obsidian.nvim
     version = "*",
     lazy = true,
     ft = "markdown",
     keys = {
-      { "<leader>oj", "<cmd>ObsidianToday<cr>", desc = "Today's note" },
-      { "<leader>oy", "<cmd>ObsidianYesterday<cr>", desc = "Yesterday's note" },
-      { "<leader>ot", "<cmd>ObsidianTomorrow<cr>", desc = "Tomorrow's note" },
+      { "<leader>oj", "<cmd>Obsidian today<cr>", desc = "Today's note" },
+      { "<leader>oy", "<cmd>Obsidian yesterday<cr>", desc = "Yesterday's note" },
+      { "<leader>ot", "<cmd>Obsidian tomorrow<cr>", desc = "Tomorrow's note" },
     },
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -46,16 +46,6 @@ return {
           folder = "dailynotes",
         },
       }
-    end,
-  },
-
-  {
-    "folke/which-key.nvim",
-    opts = function(_, opts)
-      opts.spec = opts.spec or {}
-      vim.list_extend(opts.spec, {
-        { "<leader>o", group = "Obsidian", icon = { cat = "filetype", name = "markdown" } },
-      })
     end,
   },
 }
