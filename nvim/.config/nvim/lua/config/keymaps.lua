@@ -35,3 +35,14 @@ end, { desc = "DAP Step Out" })
 vim.keymap.set("", "<F9>", function()
   require("dap").toggle_breakpoint()
 end, { desc = "DAP Toggle Breakpoint" })
+
+-- <leader> ct toggles blink completion menu
+map("n", "<leader>ct", function()
+  vim.b.completion = not (vim.b.completion ~= false)
+
+  if not vim.b.completion then
+    require("blink.cmp").hide()
+  end
+
+  vim.notify("Completion " .. (vim.b.completion and "enabled" or "disabled"))
+end, { desc = "Toggle completion" })
