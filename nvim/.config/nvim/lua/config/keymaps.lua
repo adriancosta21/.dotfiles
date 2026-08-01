@@ -5,7 +5,7 @@
 local map = LazyVim.safe_keymap_set
 
 -- Ctrl + A select all
-map("n", "<C-a>", "ggVG", { desc = "Select All" })
+map("n", "<C-a>", "gg0VG$", { desc = "Select All" })
 
 -- Ctrl+C para copiar seleção no Visual Mode
 map("v", "<C-c>", '"+y', { desc = "Copy to system clipboard" })
