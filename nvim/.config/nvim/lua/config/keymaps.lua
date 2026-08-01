@@ -7,15 +7,14 @@ local map = LazyVim.safe_keymap_set
 -- Ctrl + A select all
 map("n", "<C-a>", "gg0VG$", { desc = "Select All" })
 
--- Ctrl+C para copiar seleção no Visual Mode
+-- Ctrl+C to copy text on Visual mode
 map("v", "<C-c>", '"+y', { desc = "Copy to system clipboard" })
 
--- Ctrl+V para colar no Normal Mode
+-- Ctrl+V to paste text on Normal mode
 map("n", "<C-v>", '"+p', { desc = "Paste from system clipboard" })
 
--- Ctrl+Tab navega para o buffer anterior (último usado)
-map("n", "<C-Tab>", "<cmd>b#<cr>", { desc = "Switch to last buffer" })
-
+-- Ctrl+Tab to switch to last used buffer
+map("n", "<F13>", "<cmd>b#<CR>", { desc = "Switch to last buffer" })
 -- DAP F-keys, all modes (besides default bindings)
 vim.keymap.set("", "<F4>", function()
   require("dap").terminate()
