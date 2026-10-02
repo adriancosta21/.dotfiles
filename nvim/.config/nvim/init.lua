@@ -1,44 +1,37 @@
--- bootstrap lazy.nvim, LazyVim and your plugins
-require("config.lazy")
-require("config.options")
-require("config.highlights")
--- disable swap files
-vim.opt.swapfile = false
-vim.keymap.set("i", "jk", "<Esc>", { noremap = true })
-vim.keymap.set("v", "jk", "<Esc>", { noremap = true })
-vim.keymap.set("t", "jk", "<C-\\><C-n>", { noremap = true })
--- Aplica transparência global após carregar o colorscheme
-vim.api.nvim_create_autocmd("ColorScheme", {
-  pattern = "*",
-  callback = function()
-    -- Grupos básicos para janelas normais e flutuantes
-    vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46/"
+vim.g.mapleader = " "
 
-    -- Grupos específicos para file explorers (adicione conforme necessário)
-    local transparent_groups = {
-      -- NvimTree
-      "NvimTreeNormal",
-      "NvimTreeNormalNC",
-      "NvimTreeEndOfBuffer",
-      -- Neo-tree
-      "NeoTreeNormal",
-      "NeoTreeNormalNC",
-      "NeoTreeEndOfBuffer",
-      -- Oil.nvim
-      "OilDir",
-      "OilFile",
-      -- Outros plugins
-      "TelescopeNormal",
-      "TelescopeBorder",
-      "TelescopePromptNormal",
-      "LazyNormal",
-      "MasonNormal",
-      "WhichKeyFloat",
-    }
+-- bootstrap lazy and all plugins
+local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 
-    for _, group in ipairs(transparent_groups) do
-      vim.api.nvim_set_hl(0, group, { bg = "none" })
-    end
-  end,
-})
+if not vim.uv.fs_stat(lazypath) then
+  local repo = "https://github.com/folke/lazy.nvim.git"
+  vim.fn.system { "git", "clone", "--filter=blob:none", repo, "--branch=stable", lazypath }
+end
+
+vim.opt.rtp:prepend(lazypath)
+
+local lazy_config = require "configs.lazy"
+
+-- load plugins
+require("lazy").setup({
+  {
+    "NvChad/NvChad",
+    lazy = false,
+    branch = "v2.5",
+    import = "nvchad.plugins",
+  },
+
+  { import = "plugins" },
+}, lazy_config)
+
+-- load theme
+dofile(vim.g.base46_cache .. "defaults")
+dofile(vim.g.base46_cache .. "statusline")
+
+require "options"
+require "autocmds"
+
+vim.schedule(function()
+  require "mappings"
+end)
