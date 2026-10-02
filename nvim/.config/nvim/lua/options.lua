@@ -1,6 +1,5 @@
 require "nvchad.options"
 
--- add yours here!
-
--- local o = vim.o
+local o = vim.o
+o.wildmode = "noselect:lastused,full"
 -- o.cursorlineopt ='both' -- to enable cursorline!
