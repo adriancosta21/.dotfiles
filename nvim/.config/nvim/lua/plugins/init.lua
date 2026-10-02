@@ -1,7 +1,7 @@
 return {
   {
     "stevearc/conform.nvim",
-    event = 'BufWritePre', -- format on save
+    event = "BufWritePre", -- format on save
     opts = require "configs.conform",
   },
 
@@ -11,6 +11,21 @@ return {
     config = function()
       require "configs.lspconfig"
     end,
+  },
+  {
+    "nvim-telescope/telescope.nvim",
+    opts = {
+      pickers = {
+        -- search inside hidden dirs (.config, dotfiles) but skip .git
+        live_grep = {
+          additional_args = { "--hidden", "-g", "!.git" },
+        },
+        find_files = {
+          hidden = true,
+          file_ignore_patterns = { "^.git/" },
+        },
+      },
+    },
   },
 
   -- test new blink
