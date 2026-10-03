@@ -74,4 +74,11 @@ return {
       opts = { enable_close_on_slash = true }, -- complete the tag name when typing "</"
     },
   },
+  {
+    -- add/change/delete surroundings: ysiw", cs"', ds", S" in visual
+    "kylechui/nvim-surround",
+    version = "*", -- latest release instead of latest commit
+    event = "VeryLazy",
+    opts = {},
+  },
 }
