@@ -1,7 +1,18 @@
 require("nvchad.configs.lspconfig").defaults()
 
-local servers = { "html", "cssls" }
+local servers = {
+  "html",
+  "cssls", --css
+  "vtsls", -- javascript, typescript LSP
+  "oxlint", -- javascript, typescript linter
+  "emmet_language_server", -- HTML/CSS abbreviations in html, css, jsx, tsx
+  "jsonls", --json
+  "taplo", --TOML
+  "bashls", --shell scripting
+}
+
 vim.lsp.enable(servers)
+-- read :h vim.lsp.config for changing options of lsp servers
 
 -- Signature help hardcodes "(<C-s> to cycle)" in its title; rewrite it to the keys
 -- set in mappings.lua before the float is drawn
