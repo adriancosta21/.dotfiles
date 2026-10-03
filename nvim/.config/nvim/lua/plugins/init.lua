@@ -57,6 +57,17 @@ return {
     event = "BufReadPre", -- only save when a file was opened (dashboard-only runs don't overwrite)
     opts = {},
   },
+  {
+    -- centered cmdline (floating window) on top of Neovim's native ui2
+    "rachartier/tiny-cmdline.nvim",
+    event = "VeryLazy", -- NvChad defaults to lazy = true, so it needs a trigger
+    init = function()
+      -- must run before the plugin loads (init runs at startup, VeryLazy comes later)
+      require("vim._core.ui2").enable {}
+      vim.o.cmdheight = 0
+    end,
+    opts = {},
+  },
 
   -- test new blink
   -- { import = "nvchad.blink.lazyspec" },
