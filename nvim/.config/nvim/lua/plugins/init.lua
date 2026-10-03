@@ -66,4 +66,12 @@ return {
     end,
     opts = {},
   },
+  {
+    -- auto close and rename paired HTML/JSX tags (treesitter based)
+    "windwp/nvim-ts-autotag",
+    ft = { "html", "javascriptreact", "typescriptreact" }, -- only load for files with tags
+    opts = {
+      opts = { enable_close_on_slash = true }, -- complete the tag name when typing "</"
+    },
+  },
 }
