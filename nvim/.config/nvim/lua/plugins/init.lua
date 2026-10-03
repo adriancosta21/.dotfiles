@@ -27,6 +27,21 @@ return {
       },
     },
   },
+  {
+    "kevinhwang91/nvim-hlslens",
+    opts = {},
+    -- load before the first / or ? search so hlslens can catch it (keys alone only load on n/N/*)
+    event = "CmdlineEnter",
+    -- show match index (e.g. [2/7]) next to search results
+    keys = {
+      { "n", [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]], desc = "Next match" },
+      { "N", [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]], desc = "Prev match" },
+      { "*", [[*<Cmd>lua require('hlslens').start()<CR>]], desc = "Search word forward" },
+      { "#", [[#<Cmd>lua require('hlslens').start()<CR>]], desc = "Search word backward" },
+      { "g*", [[g*<Cmd>lua require('hlslens').start()<CR>]], desc = "Search partial word forward" },
+      { "g#", [[g#<Cmd>lua require('hlslens').start()<CR>]], desc = "Search partial word backward" },
+    },
+  },
 
   -- test new blink
   -- { import = "nvchad.blink.lazyspec" },

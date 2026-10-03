@@ -8,6 +8,15 @@ local M = {}
 M.base46 = {
   theme = "tokyonight",
   transparency = true,
+  hl_override = {
+    Search = { fg = "black", bg = "yellow" },
+    IncSearch = { fg = "black", bg = "yellow" },
+  },
+  -- groups the theme doesn't define (CurSearch also colors hlslens "near" groups via link)
+  hl_add = {
+    CurSearch = { fg = "black", bg = "blue" },
+    HlSearchLens = { fg = "black", bg = "yellow" },
+  },
 }
 
 M.ui = {
