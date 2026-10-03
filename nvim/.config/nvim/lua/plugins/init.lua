@@ -51,6 +51,12 @@ return {
       dofile(vim.g.base46_cache .. "rainbowdelimiters")
     end,
   },
+  {
+    -- save a session per directory on exit; restore with "s" on the snacks dashboard
+    "folke/persistence.nvim",
+    event = "BufReadPre", -- only save when a file was opened (dashboard-only runs don't overwrite)
+    opts = {},
+  },
 
   -- test new blink
   -- { import = "nvchad.blink.lazyspec" },
