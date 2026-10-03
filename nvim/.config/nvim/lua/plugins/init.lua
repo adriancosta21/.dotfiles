@@ -42,6 +42,15 @@ return {
       { "g#", [[g#<Cmd>lua require('hlslens').start()<CR>]], desc = "Search partial word backward" },
     },
   },
+  {
+    -- color matching brackets by nesting level (treesitter based)
+    "HiPhish/rainbow-delimiters.nvim",
+    event = "User FilePost",
+    config = function()
+      -- theme colors from the base46 "rainbowdelimiters" integration (enabled in chadrc)
+      dofile(vim.g.base46_cache .. "rainbowdelimiters")
+    end,
+  },
 
   -- test new blink
   -- { import = "nvchad.blink.lazyspec" },

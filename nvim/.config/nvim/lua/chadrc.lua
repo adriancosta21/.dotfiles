@@ -8,6 +8,7 @@ local M = {}
 M.base46 = {
   theme = "tokyonight",
   transparency = true,
+  integrations = { "rainbowdelimiters" },
   hl_override = {
     Search = { fg = "black", bg = "yellow" },
     IncSearch = { fg = "black", bg = "yellow" },
