@@ -16,6 +16,19 @@ map("n", "<leader>e", "<cmd> NvimTreeToggle <cr>", { desc = "Toggle file explore
 map("n", "<leader>/", "<cmd> Telescope live_grep <cr>", { desc = "Telescope live grep" })
 map({ "n", "x" }, "<leader>gc", "gc", { desc = "Toggle comment", remap = true })
 
+-- Buffer cycling, ignored in floating windows (Lazy, Mason...): NvChad's version would
+-- load a regular buffer inside the float and break it
+map("n", "<Tab>", function()
+  if vim.api.nvim_win_get_config(0).relative == "" then
+    require("nvchad.tabufline").next()
+  end
+end, { desc = "buffer goto next" })
+map("n", "<S-Tab>", function()
+  if vim.api.nvim_win_get_config(0).relative == "" then
+    require("nvchad.tabufline").prev()
+  end
+end, { desc = "buffer goto prev" })
+
 -- CTRL mappings
 map({ "n", "x" }, "<C-a>", "<Esc>gg0VG$", { desc = "Select all text" })
 map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>", { desc = "Save file" })
