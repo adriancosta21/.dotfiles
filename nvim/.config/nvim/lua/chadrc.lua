@@ -10,4 +10,11 @@ M.base46 = {
   transparency = true,
 }
 
+M.ui = {
+  tabufline = {
+    -- default order without "btns" (theme toggle + close all buttons)
+    order = { "treeOffset", "buffers", "tabs" },
+  },
+}
+
 return M
