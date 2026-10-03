@@ -29,6 +29,27 @@ map("n", "<S-Tab>", function()
   end
 end, { desc = "buffer goto prev" })
 
+-- gf: open directories in nvim-tree (netrw is disabled) and never inside floating windows
+map("n", "gf", function()
+  local target = vim.fn.expand "<cfile>" -- path under the cursor
+  local in_float = vim.api.nvim_win_get_config(0).relative ~= ""
+
+  if vim.fn.isdirectory(target) == 1 then
+    if in_float then
+      vim.cmd.close()
+    end
+    require("nvim-tree.api").tree.open { path = target }
+  elseif in_float then
+    local file = vim.fn.findfile(target) -- resolve it like gf does, before closing the float
+    vim.cmd.close()
+    if file ~= "" then
+      vim.cmd.edit(file)
+    end
+  else
+    vim.cmd "normal! gf"
+  end
+end, { desc = "Go to file (directories in nvim-tree)" })
+
 -- CTRL mappings
 map({ "n", "x" }, "<C-a>", "<Esc>gg0VG$", { desc = "Select all text" })
 map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>", { desc = "Save file" })
