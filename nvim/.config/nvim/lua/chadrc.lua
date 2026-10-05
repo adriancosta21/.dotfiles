@@ -19,6 +19,16 @@ M.base46 = {
     HlSearchLens = { fg = "black", bg = "yellow" },
     SnacksPickerTitle = { fg = "white", bg = "NONE" },
     YankHighlight = { fg = "black", bg = "orange" }, -- yanked text flash (see autocmds.lua)
+    -- mini.icons defaults are links, and NvChad renders them as a default gray
+    MiniIconsAzure = { fg = "nord_blue" },
+    MiniIconsBlue = { fg = "blue" },
+    MiniIconsCyan = { fg = "cyan" },
+    MiniIconsGreen = { fg = "green" },
+    MiniIconsGrey = { fg = "light_grey" },
+    MiniIconsOrange = { fg = "orange" },
+    MiniIconsPurple = { fg = "purple" },
+    MiniIconsRed = { fg = "red" },
+    MiniIconsYellow = { fg = "yellow" },
   },
 }
 

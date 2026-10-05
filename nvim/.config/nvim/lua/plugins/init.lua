@@ -1,6 +1,8 @@
 return {
   -- replaced by the snacks explorer (see plugins/snacks.lua)
   { "nvim-tree/nvim-tree.lua", enabled = false },
+  -- icons come from mini.icons, which mocks this plugin (see plugins/mini-icons.lua)
+  { "nvim-tree/nvim-web-devicons", enabled = false },
   {
     "stevearc/conform.nvim",
     event = "BufWritePre", -- format on save
