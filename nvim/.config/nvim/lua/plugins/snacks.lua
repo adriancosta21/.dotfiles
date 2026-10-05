@@ -27,6 +27,12 @@ return {
           },
         },
       },
+      
+      -- vim.ui.input in the snacks box (explorer rename uses vim.ui.input, "add" already uses it)
+      input = { enabled = true },
+      styles = {
+        input = { row = false }, -- center input
+      },
     },
     keys = {
       -- rename the current file and let the LSP update imports
