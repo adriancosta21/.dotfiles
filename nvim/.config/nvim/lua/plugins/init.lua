@@ -1,4 +1,6 @@
 return {
+  -- replaced by the snacks explorer (see plugins/snacks.lua)
+  { "nvim-tree/nvim-tree.lua", enabled = false },
   {
     "stevearc/conform.nvim",
     event = "BufWritePre", -- format on save

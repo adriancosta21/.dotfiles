@@ -4,7 +4,7 @@ local map = vim.keymap.set
 
 -- REMAPS
 vim.keymap.del("v", "<leader>/") -- used to comment line, <leader>gc is used instead. Will be used as grep
-vim.keymap.del("n", "<C-n>") -- used to toggle nvim-tree, <leader>e is used instead
+vim.keymap.del("n", "<C-n>") -- used to toggle the file explorer, <leader>e is used instead
 vim.keymap.del("n", "<leader>b") -- used to create a new buffer; <leader>b is now the buffer group
 
 -- INSERT mode
@@ -13,7 +13,9 @@ map("i", "jk", "<ESC>") -- bind jk as ESC sequence
 -- NORMAL mode
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("n", "<leader><leader>", "<cmd> Telescope find_files <cr>", { desc = "Find files" })
-map("n", "<leader>e", "<cmd> NvimTreeToggle <cr>", { desc = "Toggle file explorer" })
+map("n", "<leader>e", function()
+  Snacks.explorer()
+end, { desc = "Toggle file explorer" })
 map("n", "<leader>/", "<cmd> Telescope live_grep <cr>", { desc = "Telescope live grep" })
 map({ "n", "x" }, "<leader>gc", "gc", { desc = "Toggle comment", remap = true })
 
@@ -46,26 +48,22 @@ map("n", "<S-Tab>", function()
   end
 end, { desc = "buffer goto prev" })
 
--- gf: open directories in nvim-tree (netrw is disabled) and never inside floating windows
+-- gf: never open inside floating windows (Lazy, Mason...): close the float first.
+-- Directories open in the snacks explorer (it replaces netrw)
 map("n", "gf", function()
-  local target = vim.fn.expand "<cfile>" -- path under the cursor
-  local in_float = vim.api.nvim_win_get_config(0).relative ~= ""
-
-  if vim.fn.isdirectory(target) == 1 then
-    if in_float then
-      vim.cmd.close()
-    end
-    require("nvim-tree.api").tree.open { path = target }
-  elseif in_float then
-    local file = vim.fn.findfile(target) -- resolve it like gf does, before closing the float
-    vim.cmd.close()
-    if file ~= "" then
-      vim.cmd.edit(file)
-    end
-  else
+  if vim.api.nvim_win_get_config(0).relative == "" then
     vim.cmd "normal! gf"
+    return
   end
-end, { desc = "Go to file (directories in nvim-tree)" })
+
+  local target = vim.fn.expand "<cfile>" -- path under the cursor
+  -- resolve it like gf does, before closing the float
+  local path = vim.fn.isdirectory(target) == 1 and target or vim.fn.findfile(target)
+  vim.cmd.close()
+  if path ~= "" then
+    vim.cmd.edit(path)
+  end
+end, { desc = "Go to file (never inside floats)" })
 
 -- CTRL mappings
 map({ "n", "x" }, "<C-a>", "<Esc>gg0VG$", { desc = "Select all text" })

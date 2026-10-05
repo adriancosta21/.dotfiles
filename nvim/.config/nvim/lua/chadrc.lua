@@ -17,6 +17,7 @@ M.base46 = {
   hl_add = {
     CurSearch = { fg = "black", bg = "blue" },
     HlSearchLens = { fg = "black", bg = "yellow" },
+    SnacksPickerTitle = { fg = "white", bg = "NONE" },
   },
 }
 
@@ -24,6 +25,8 @@ M.ui = {
   tabufline = {
     -- default order without "btns" (theme toggle + close all buttons)
     order = { "treeOffset", "buffers", "tabs" },
+    -- shift the buffer bar right of the snacks explorer sidebar (default was "NvimTree")
+    treeOffsetFt = "snacks_picker_list",
   },
 }
 
