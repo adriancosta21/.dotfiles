@@ -23,10 +23,8 @@ M.base46 = {
 
 M.ui = {
   tabufline = {
-    -- default order without "btns" (theme toggle + close all buttons)
-    order = { "treeOffset", "buffers", "tabs" },
-    -- shift the buffer bar right of the snacks explorer sidebar (default was "NvimTree")
-    treeOffsetFt = "snacks_picker_list",
+    -- Overwrite to remove top right buttons and left padding for file explorer (it now opens on the right side)
+    order = { "buffers", "tabs" },
   },
 }
 

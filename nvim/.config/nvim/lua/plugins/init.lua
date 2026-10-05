@@ -62,8 +62,9 @@ return {
     "rachartier/tiny-cmdline.nvim",
     event = "VeryLazy", -- NvChad defaults to lazy = true, so it needs a trigger
     init = function()
-      -- must run before the plugin loads (init runs at startup, VeryLazy comes later)
-      require("vim._core.ui2").enable {}
+      -- messages in an ephemeral floating window (not in the cmdline, so it never "expands"
+      -- into the pager after commands like :noa w)
+      require("vim._core.ui2").enable { msg = { targets = "msg" } }
       vim.o.cmdheight = 0
     end,
     opts = {},

@@ -38,12 +38,16 @@ end, { desc = "Delete buffers to the right" })
 -- Buffer cycling, ignored in floating windows (Lazy, Mason...): NvChad's version would
 -- load a regular buffer inside the float and break it
 map("n", "<Tab>", function()
-  if vim.api.nvim_win_get_config(0).relative == "" then
+  if vim.bo.buftype == "terminal" then
+    vim.cmd "wincmd p" -- from the terminal, just go back to the file window
+  elseif vim.api.nvim_win_get_config(0).relative == "" then
     require("nvchad.tabufline").next()
   end
 end, { desc = "buffer goto next" })
 map("n", "<S-Tab>", function()
-  if vim.api.nvim_win_get_config(0).relative == "" then
+  if vim.bo.buftype == "terminal" then
+    vim.cmd "wincmd p" -- from the terminal, just go back to the file window
+  elseif vim.api.nvim_win_get_config(0).relative == "" then
     require("nvchad.tabufline").prev()
   end
 end, { desc = "buffer goto prev" })
