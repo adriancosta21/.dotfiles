@@ -29,6 +29,7 @@ M.base46 = {
     MiniIconsPurple = { fg = "purple" },
     MiniIconsRed = { fg = "red" },
     MiniIconsYellow = { fg = "yellow" },
+    St_Macro = { fg = "red" }, -- macro recording indicator (statusline "macro" module)
   },
 }
 
@@ -36,6 +37,17 @@ M.ui = {
   tabufline = {
     -- Overwrite to remove top right buttons and left padding for file explorer (it now opens on the right side)
     order = { "buffers", "tabs" },
+  },
+  statusline = {
+    -- default order + "macro" after the mode: with cmdheight = 0 (tiny-cmdline) and
+    -- showmode off (NvChad), "recording @q" has nowhere else to show up
+    order = { "mode", "macro", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "cwd", "cursor" },
+    modules = {
+      macro = function()
+        local reg = vim.fn.reg_recording()
+        return reg ~= "" and ("%#St_Macro# 󰑋 @" .. reg .. " ") or ""
+      end,
+    },
   },
 }
 

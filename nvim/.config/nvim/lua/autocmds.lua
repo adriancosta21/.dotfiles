@@ -15,6 +15,15 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
+-- Redraw the statusline when a macro recording starts/stops (its "macro" module, see chadrc.lua).
+vim.api.nvim_create_autocmd({ "RecordingEnter", "RecordingLeave" }, {
+  callback = function()
+    vim.schedule(function()
+      vim.cmd.redrawstatus()
+    end)
+  end,
+})
+
 -- Terminal windows keep their terminal: if any command (:edit, pickers, gf...) opens another
 -- buffer in one, put the terminal back and show that buffer in the previous (file) window
 -- (TermOpen too: a new terminal is shown first as an empty buffer, then turned into a terminal)
@@ -33,7 +42,11 @@ vim.api.nvim_create_autocmd({ "TermOpen", "BufWinEnter" }, {
         local wins = vim.api.nvim_tabpage_list_wins(0)
         table.insert(wins, 1, vim.fn.win_getid(vim.fn.winnr "#"))
         for _, w in ipairs(wins) do
-          if vim.api.nvim_win_is_valid(w) and not vim.w[w].term_buf and vim.api.nvim_win_get_config(w).relative == "" then
+          if
+            vim.api.nvim_win_is_valid(w)
+            and not vim.w[w].term_buf
+            and vim.api.nvim_win_get_config(w).relative == ""
+          then
             vim.api.nvim_win_set_buf(w, ev.buf)
             vim.api.nvim_set_current_win(w)
             return
