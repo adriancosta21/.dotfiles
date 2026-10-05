@@ -14,6 +14,19 @@ return {
       -- file explorer (replaces nvim-tree); also opens when editing a directory (replace_netrw)
       -- its rename already goes through Snacks.rename, so the LSP updates imports
       explorer = { enabled = true },
+      picker = {
+        sources = {
+          explorer = {
+            hidden = true, -- show dotfiles
+            layout = { layout = { position = "right" } },
+            -- remember the H (hidden) / I (ignored) toggles for the next open in current session:
+            on_close = function(picker)
+              local cfg = Snacks.config.picker.sources.explorer
+              cfg.hidden, cfg.ignored = picker.opts.hidden, picker.opts.ignored
+            end,
+          },
+        },
+      },
     },
     keys = {
       -- rename the current file and let the LSP update imports
