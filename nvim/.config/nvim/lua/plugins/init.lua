@@ -51,6 +51,10 @@ return {
       dofile(vim.g.base46_cache .. "rainbowdelimiters")
     end,
   },
+  -- git blame per line on normal mode
+  { "lewis6991/gitsigns.nvim",
+    opts = { current_line_blame = true }
+  },
   {
     -- save a session per directory on exit; restore with "s" on the snacks dashboard
     "folke/persistence.nvim",
