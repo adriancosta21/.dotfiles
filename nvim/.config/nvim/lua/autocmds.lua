@@ -8,6 +8,13 @@ vim.api.nvim_create_autocmd("CmdlineChanged", {
   end,
 })
 
+-- Briefly highlight yanked text (color: YankHighlight in chadrc.lua)
+vim.api.nvim_create_autocmd("TextYankPost", {
+  callback = function()
+    vim.hl.on_yank { higroup = "YankHighlight", timeout = 200 }
+  end,
+})
+
 -- Terminal windows keep their terminal: if any command (:edit, pickers, gf...) opens another
 -- buffer in one, put the terminal back and show that buffer in the previous (file) window
 -- (TermOpen too: a new terminal is shown first as an empty buffer, then turned into a terminal)

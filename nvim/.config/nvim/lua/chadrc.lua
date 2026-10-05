@@ -18,6 +18,7 @@ M.base46 = {
     CurSearch = { fg = "black", bg = "blue" },
     HlSearchLens = { fg = "black", bg = "yellow" },
     SnacksPickerTitle = { fg = "white", bg = "NONE" },
+    YankHighlight = { fg = "black", bg = "orange" }, -- yanked text flash (see autocmds.lua)
   },
 }
 
