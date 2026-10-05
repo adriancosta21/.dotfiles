@@ -5,6 +5,21 @@ local function is_float(win)
   return vim.api.nvim_win_get_config(win or 0).relative ~= ""
 end
 
+-- Close the buffer; when it was the last one, show the dashboard instead of NvChad's empty
+-- [No Name] buffer (the dashboard takes over that buffer and makes it unlisted)
+function M.close_buffer()
+  local was_last = #vim.t.bufs <= 1
+  require("nvchad.tabufline").close_buffer()
+  if was_last and vim.bo.buftype == "" and vim.api.nvim_buf_get_name(0) == "" then
+    Snacks.dashboard { buf = 0, win = 0 }
+    -- drop it from the buffer bar too (NvChad only updates vim.t.bufs on buffer events)
+    vim.t.bufs = vim.tbl_filter(function(b)
+      return vim.bo[b].buflisted
+    end, vim.t.bufs)
+    vim.cmd.redrawtabline()
+  end
+end
+
 -- Buffer cycling ("next" / "prev"). From a terminal it just goes back to the file window;
 -- ignored in floating windows (Lazy, Mason...), where NvChad's version would load a regular
 -- buffer inside the float and break it
