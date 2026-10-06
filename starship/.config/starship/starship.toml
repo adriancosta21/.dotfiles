@@ -14,12 +14,18 @@ success_symbol = '[❯](bold green)'
 min_time = 2000
 format = '[ $duration](overlay0) '
 
-[git_branch]
-format = '[$symbol$branch(:$remote_branch)]($style)'
-
 [git_status]
 style = "bg:#394260"
-format = '[[($all_status$ahead_behind )](fg:#769ff0)]($style)'
+format = '[[($all_status$ahead_behind )](fg:blue)]($style)'
+# default symbols + how many files of each kind: red = problem/loss, yellow = pending change,
+# green = ready to commit, blue = informational
+conflicted = '[=${count}](bold fg:red)'
+deleted = '[✘${count}](fg:red)'
+modified = '[!${count}](fg:blue)'
+renamed = '[»${count}](fg:blue)'
+staged = '[+${count}](fg:green)'
+untracked = '[?${count}](fg:blue)'
+stashed = '[\$${count}](fg:blue)'
 
 [docker_context]
 disabled = false
