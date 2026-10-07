@@ -7,6 +7,7 @@ local utils = require "utils" -- helper functions (lua/utils.lua)
 vim.keymap.del("v", "<leader>/") -- used to comment line, <leader>gc is used instead. Will be used as grep
 vim.keymap.del("n", "<C-n>") -- used to toggle the file explorer, <leader>e is used instead
 vim.keymap.del("n", "<leader>b") -- used to create a new buffer; <leader>b is now the buffer group
+vim.keymap.del("n", "<leader>x") -- used to close the buffer, <leader>bd is used instead
 vim.keymap.del("n", "<leader>ds") -- diagnostics loclist, <leader>dX is used instead
 vim.keymap.del("n", "<leader>gt") -- telescope git status, <leader>gs is used instead
 
@@ -52,7 +53,6 @@ map("n", "<leader>dX", vim.diagnostic.setloclist, { desc = "Diagnostics list (cu
 -- BUFFERS (<leader>b group, LazyVim style)
 require("which-key").add { { "<leader>b", group = "buffer" } }
 map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to other buffer" })
-map("n", "<leader>x", utils.close_buffer, { desc = "Delete buffer" })
 map("n", "<leader>bd", utils.close_buffer, { desc = "Delete buffer" })
 map("n", "<leader>bo", function()
   require("nvchad.tabufline").closeAllBufs(false)
