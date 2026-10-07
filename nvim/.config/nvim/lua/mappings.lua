@@ -7,6 +7,7 @@ local utils = require "utils" -- helper functions (lua/utils.lua)
 vim.keymap.del("v", "<leader>/") -- used to comment line, <leader>gc is used instead. Will be used as grep
 vim.keymap.del("n", "<C-n>") -- used to toggle the file explorer, <leader>e is used instead
 vim.keymap.del("n", "<leader>b") -- used to create a new buffer; <leader>b is now the buffer group
+vim.keymap.del("n", "<leader>gt") -- telescope git status, <leader>gs is used instead
 
 -- INSERT mode
 map("i", "jk", "<ESC>") -- bind jk as ESC sequence
@@ -20,6 +21,16 @@ end, { desc = "Toggle file explorer" })
 map("n", "<leader>/", "<cmd> Telescope live_grep <cr>", { desc = "Telescope live grep" })
 map({ "n", "x" }, "<leader>gc", "gc", { desc = "Toggle comment", remap = true })
 map("n", "gf", utils.goto_file, { desc = "Go to file (never inside floats)" })
+
+-- GO TO (<leader>g group): pick a diagnostic / changed file and jump to it
+require("which-key").add { { "<leader>g", group = "go to" } }
+map("n", "<leader>gs", "<cmd> Telescope git_status <cr>", { desc = "Git status (changed files)" })
+map("n", "<leader>gd", function()
+  Snacks.picker.diagnostics()
+end, { desc = "Diagnostics (all open files)" })
+map("n", "<leader>gD", function()
+  Snacks.picker.diagnostics_buffer()
+end, { desc = "Diagnostics (current file)" })
 
 -- CODE (<leader>c group)
 require("which-key").add { { "<leader>c", group = "code" } }
