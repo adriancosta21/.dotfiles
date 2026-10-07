@@ -35,6 +35,13 @@ end, { desc = "Delete buffers to the left" })
 map("n", "<leader>br", function()
   require("nvchad.tabufline").closeBufs_at_direction "right"
 end, { desc = "Delete buffers to the right" })
+-- needs kitty (no_op) + tmux (extended-keys) to pass Ctrl+Shift through, see their configs
+map("n", "<C-S-h>", function() -- move buffer left
+  require("nvchad.tabufline").move_buf(-1)
+end, { desc = "Move buffer left" })
+map("n", "<C-S-l>", function()
+  require("nvchad.tabufline").move_buf(1) -- move buffer right
+end, { desc = "Move buffer right" })
 map("n", "<Tab>", utils.next_buffer, { desc = "buffer goto next" })
 map("n", "<S-Tab>", utils.prev_buffer, { desc = "buffer goto prev" })
 
