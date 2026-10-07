@@ -7,6 +7,7 @@ local utils = require "utils" -- helper functions (lua/utils.lua)
 vim.keymap.del("v", "<leader>/") -- used to comment line, <leader>gc is used instead. Will be used as grep
 vim.keymap.del("n", "<C-n>") -- used to toggle the file explorer, <leader>e is used instead
 vim.keymap.del("n", "<leader>b") -- used to create a new buffer; <leader>b is now the buffer group
+vim.keymap.del("n", "<leader>ds") -- diagnostics loclist, <leader>dX is used instead
 vim.keymap.del("n", "<leader>gt") -- telescope git status, <leader>gs is used instead
 
 -- INSERT mode
@@ -41,6 +42,12 @@ map("n", "<leader>co", utils.lsp_action "source.organizeImports", { desc = "Orga
 map("n", "<leader>cM", utils.lsp_action "source.addMissingImports.ts", { desc = "Add missing imports" })
 map("n", "<leader>cu", utils.lsp_action "source.removeUnused.ts", { desc = "Remove unused imports" })
 map("n", "<leader>cD", utils.lsp_action "source.fixAll.ts", { desc = "Fix all diagnostics" })
+
+-- DEBUG (<leader>d group): diagnostics in native quickfix/location list windows (like LazyVim's
+-- Trouble), regular buffers you can copy from; <CR> jumps to the error. Only open files
+require("which-key").add { { "<leader>d", group = "debug" } }
+map("n", "<leader>dx", vim.diagnostic.setqflist, { desc = "Diagnostics list (all open files)" })
+map("n", "<leader>dX", vim.diagnostic.setloclist, { desc = "Diagnostics list (current file)" })
 
 -- BUFFERS (<leader>b group, LazyVim style)
 require("which-key").add { { "<leader>b", group = "buffer" } }
