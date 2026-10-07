@@ -90,4 +90,10 @@ return {
     event = "VeryLazy",
     opts = {},
   },
+  {
+    "sphamba/smear-cursor.nvim", -- fluid cursor
+    event = "VeryLazy",
+    opts = {},
+    smear_between_buffers = false,
+  },
 }
