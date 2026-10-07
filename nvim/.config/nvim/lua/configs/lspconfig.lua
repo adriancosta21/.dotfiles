@@ -11,8 +11,24 @@ local servers = {
   "bashls", --shell scripting
 }
 
-vim.lsp.enable(servers)
 -- read :h vim.lsp.config for changing options of lsp servers
+
+-- vtsls additional config for automatically search through installed packages
+vim.lsp.config("vtsls", {
+  settings = {
+    vtsls = {
+      autoUseWorkspaceTsdk = true, -- use the project's own TypeScript version
+      experimental = {
+        completion = {
+          enableServerSideFuzzyMatch = true,
+          entriesLimit = 100,
+        },
+      },
+    },
+  },
+})
+
+vim.lsp.enable(servers)
 
 -- Signature help hardcodes "(<C-s> to cycle)" in its title; rewrite it to the keys
 -- set in mappings.lua before the float is drawn
