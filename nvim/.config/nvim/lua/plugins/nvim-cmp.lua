@@ -5,6 +5,7 @@ return {
     local cmp = require "cmp"
     local luasnip = require "luasnip"
 
+    opts.matching = { disallow_partial_fuzzy_matching = false } -- match completions anywhere in the word, not only at the start ("blue" also matches "lightblue")
     -- Enter only inserts a newline
     opts.mapping["<CR>"] = nil
 
