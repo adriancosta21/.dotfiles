@@ -21,6 +21,16 @@ map("n", "<leader>/", "<cmd> Telescope live_grep <cr>", { desc = "Telescope live
 map({ "n", "x" }, "<leader>gc", "gc", { desc = "Toggle comment", remap = true })
 map("n", "gf", utils.goto_file, { desc = "Go to file (never inside floats)" })
 
+-- CODE (<leader>c group)
+require("which-key").add { { "<leader>c", group = "code" } }
+map({ "n", "x" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code actions" })
+map("n", "<leader>cA", utils.lsp_action "source", { desc = "Source actions (whole file)" })
+map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line diagnostics" })
+map("n", "<leader>co", utils.lsp_action "source.organizeImports", { desc = "Organize imports" })
+map("n", "<leader>cM", utils.lsp_action "source.addMissingImports.ts", { desc = "Add missing imports" })
+map("n", "<leader>cu", utils.lsp_action "source.removeUnused.ts", { desc = "Remove unused imports" })
+map("n", "<leader>cD", utils.lsp_action "source.fixAll.ts", { desc = "Fix all diagnostics" })
+
 -- BUFFERS (<leader>b group, LazyVim style)
 require("which-key").add { { "<leader>b", group = "buffer" } }
 map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to other buffer" })

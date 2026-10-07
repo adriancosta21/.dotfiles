@@ -56,4 +56,11 @@ function M.goto_file()
   end
 end
 
+-- Apply one LSP code action kind to the whole file, without the menu (like LazyVim.lsp.action)
+function M.lsp_action(kind)
+  return function()
+    vim.lsp.buf.code_action { apply = true, context = { only = { kind }, diagnostics = {} } }
+  end
+end
+
 return M
