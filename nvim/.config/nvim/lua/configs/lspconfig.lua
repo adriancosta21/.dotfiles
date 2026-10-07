@@ -1,10 +1,10 @@
 require("nvchad.configs.lspconfig").defaults()
-
 local servers = {
   "html",
   "cssls", --css
   "vtsls", -- javascript, typescript LSP
   "oxlint", -- javascript, typescript linter
+  "tailwindcss",
   "emmet_language_server", -- HTML/CSS abbreviations in html, css, jsx, tsx
   "jsonls", --json
   "taplo", --TOML
