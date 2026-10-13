@@ -36,8 +36,16 @@ return {
     event = "CmdlineEnter",
     -- show match index (e.g. [2/7]) next to search results
     keys = {
-      { "n", [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]], desc = "Next match" },
-      { "N", [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]], desc = "Prev match" },
+      {
+        "n",
+        [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
+        desc = "Next match",
+      },
+      {
+        "N",
+        [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]],
+        desc = "Prev match",
+      },
       { "*", [[*<Cmd>lua require('hlslens').start()<CR>]], desc = "Search word forward" },
       { "#", [[#<Cmd>lua require('hlslens').start()<CR>]], desc = "Search word backward" },
       { "g*", [[g*<Cmd>lua require('hlslens').start()<CR>]], desc = "Search partial word forward" },
@@ -86,6 +94,12 @@ return {
     "kylechui/nvim-surround",
     version = "*", -- latest release instead of latest commit
     event = "VeryLazy",
+    opts = {},
+  },
+  {
+    -- render markdown in the buffer (headings, tables, checkboxes, callouts)
+    "MeanderingProgrammer/render-markdown.nvim",
+    ft = "markdown",
     opts = {},
   },
   {
