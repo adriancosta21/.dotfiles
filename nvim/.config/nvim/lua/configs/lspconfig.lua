@@ -25,6 +25,12 @@ vim.lsp.config("vtsls", {
         },
       },
     },
+    typescript = {
+      preferences = { includePackageJsonAutoImports = "on" }, -- auto-import packages not imported anywhere yet
+    },
+    javascript = {
+      preferences = { includePackageJsonAutoImports = "on" },
+    },
   },
 })
 
