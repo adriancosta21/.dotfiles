@@ -96,6 +96,15 @@ return {
           function(config)
             require("mason-nvim-dap").default_setup(config)
           end,
+          -- never open disassembly buffers when stepping into code without source (e.g. libc)
+          codelldb = function(config)
+            config.adapters = vim.deepcopy(config.adapters) -- don't mutate mason-nvim-dap's shared table
+            vim.list_extend(config.adapters.executable.args, {
+              "--settings",
+              vim.json.encode { showDisassembly = "never" },
+            })
+            require("mason-nvim-dap").default_setup(config)
+          end,
           -- mason-nvim-dap has no defaults for js-debug-adapter, so define them here
           js = function()
             dap.adapters["pwa-node"] = {
