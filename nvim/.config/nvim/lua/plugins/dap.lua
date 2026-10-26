@@ -9,6 +9,13 @@ local function dap_call(fn)
   end
 end
 
+-- same for persistent-breakpoints, which saves breakpoints per directory after each change
+local function bp_call(fn)
+  return function()
+    require("persistent-breakpoints.api")[fn]()
+  end
+end
+
 -- debug the current file without the configuration picker:
 -- C/C++ run the executable with the buffer's name next to it, other languages use their "${file}" launch config
 local function debug_file()
@@ -58,14 +65,14 @@ return {
         if win and pos.line > 0 and pos.wincol <= win.textoff and vim.bo[win.bufnr].buftype == "" then
           vim.api.nvim_set_current_win(pos.winid)
           vim.api.nvim_win_set_cursor(pos.winid, { pos.line, 0 })
-          require("dap").toggle_breakpoint()
+          require("persistent-breakpoints.api").toggle_breakpoint()
         else
           vim.api.nvim_feedkeys(vim.keycode "<LeftMouse>", "n", false) -- regular click
         end
       end, { desc = "Toggle breakpoint on line number click" })
     end,
     keys = {
-      { "<leader>db", dap_call "toggle_breakpoint", desc = "Toggle breakpoint" },
+      { "<leader>db", bp_call "toggle_breakpoint", desc = "Toggle breakpoint" },
       { "<leader>df", debug_file, desc = "Debug current file" },
       { "<F5>", dap_call "continue", desc = "Debug: start/continue" },
       { "<S-F5>", dap_call "terminate", desc = "Debug: stop" },
@@ -146,6 +153,19 @@ return {
       vim.fn.sign_define("DapBreakpoint", { text = "●", texthl = "DiagnosticError" })
       vim.fn.sign_define("DapBreakpointCondition", { text = "◆", texthl = "DiagnosticWarn" })
       vim.fn.sign_define("DapStopped", { text = "▶", texthl = "DiagnosticOk", linehl = "Visual" })
+    end,
+  },
+  {
+    -- keep breakpoints between nvim sessions (saved per working directory)
+    "Weissle/persistent-breakpoints.nvim",
+    event = "BufReadPost",
+    dependencies = { "mfussenegger/nvim-dap" },
+    config = function()
+      local api = require "persistent-breakpoints.api"
+      require("persistent-breakpoints").setup { load_breakpoints_event = { "BufReadPost" } }
+      api.load_breakpoints() -- the buffer that triggered this lazy load already fired BufReadPost
+      -- breakpoint signs move with edits; save their final lines on exit
+      vim.api.nvim_create_autocmd("VimLeavePre", { callback = api.store_breakpoints })
     end,
   },
 }
