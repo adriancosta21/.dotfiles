@@ -9,6 +9,37 @@ local function dap_call(fn)
   end
 end
 
+-- debug the current file without the configuration picker:
+-- C/C++ run the executable with the buffer's name next to it, other languages use their "${file}" launch config
+local function debug_file()
+  local dap = require "dap"
+  local ft = vim.bo.filetype
+  local cfg
+
+  if ft == "c" or ft == "cpp" then
+    local exe = vim.fn.expand "%:p:r"
+    if vim.fn.executable(exe) == 0 then
+      return vim.notify("Executable not found: " .. exe, vim.log.levels.ERROR)
+    end
+    if vim.fn.getftime(vim.fn.expand "%:p") > vim.fn.getftime(exe) then
+      vim.notify("Executable is older than the source, recompile it", vim.log.levels.WARN)
+    end
+    cfg = vim.tbl_extend("force", (dap.configurations[ft] or {})[1] or {}, { program = exe, args = {} })
+  else
+    for _, c in ipairs(dap.configurations[ft] or {}) do
+      if c.request == "launch" and c.program == "${file}" then
+        cfg = c
+        break
+      end
+    end
+  end
+
+  if not cfg or not cfg.type then
+    return vim.notify("No debug configuration for filetype: " .. ft, vim.log.levels.ERROR)
+  end
+  dap.run(cfg)
+end
+
 return {
   {
     "mfussenegger/nvim-dap",
@@ -35,6 +66,7 @@ return {
     end,
     keys = {
       { "<leader>db", dap_call "toggle_breakpoint", desc = "Toggle breakpoint" },
+      { "<leader>df", debug_file, desc = "Debug current file" },
       { "<F5>", dap_call "continue", desc = "Debug: start/continue" },
       { "<S-F5>", dap_call "terminate", desc = "Debug: stop" },
       { "<C-S-F5>", dap_call "restart", desc = "Debug: restart" },
