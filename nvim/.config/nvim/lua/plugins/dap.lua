@@ -19,6 +19,20 @@ return {
       "jay-babu/mason-nvim-dap.nvim",
     },
     cmd = { "DapInstall", "DapUninstall" },
+    init = function()
+      -- clicking the line number (gutter) toggles a breakpoint on that line, like VS Code
+      vim.keymap.set("n", "<LeftMouse>", function()
+        local pos = vim.fn.getmousepos()
+        local win = pos.winid ~= 0 and vim.fn.getwininfo(pos.winid)[1]
+        if win and pos.line > 0 and pos.wincol <= win.textoff and vim.bo[win.bufnr].buftype == "" then
+          vim.api.nvim_set_current_win(pos.winid)
+          vim.api.nvim_win_set_cursor(pos.winid, { pos.line, 0 })
+          require("dap").toggle_breakpoint()
+        else
+          vim.api.nvim_feedkeys(vim.keycode "<LeftMouse>", "n", false) -- regular click
+        end
+      end, { desc = "Toggle breakpoint on line number click" })
+    end,
     keys = {
       { "<leader>db", dap_call "toggle_breakpoint", desc = "Toggle breakpoint" },
       { "<F5>", dap_call "continue", desc = "Debug: start/continue" },
